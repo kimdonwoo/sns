@@ -11,10 +11,10 @@ import java.sql.Timestamp;
 import java.time.Instant;
 
 @Entity
+@Table(name="\"post\"")
 @Getter
 @Setter
-@Table(name="\"post\"")
-@SQLDelete(sql="UPDATED \"post\" SET deleted_at = NOW() where id=?")
+@SQLDelete(sql = "UPDATE post SET deleted_at = NOW() where id = ?")
 @Where(clause = "deleted_at is NULL")
 public class PostEntity {
 

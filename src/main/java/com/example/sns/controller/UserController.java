@@ -23,7 +23,7 @@ public class UserController {
     @PostMapping("/join")
     public Response<UserJoinResponse> join(@RequestBody UserJoinRequest request){
         // POST로 request(형식 UserJoinRequest로 설정) 받아서 userService.join을 해준다
-        User user = userService.join(request.getUserName(), request.getPassword());
+        User user = userService.join(request.getName(), request.getPassword());
 
         // Controller에서 Service로부터 user로 받아온 다음 Response 형식으로 넘겨준다
         return Response.success(UserJoinResponse.fromUser(user));
@@ -32,7 +32,7 @@ public class UserController {
     @PostMapping("/login")
     public Response<UserLoginResponse> login(@RequestBody UserLoginRequest request){
 
-        String token = userService.login(request.getUserName(), request.getPassword());
+        String token = userService.login(request.getName(), request.getPassword());
         return Response.success(new UserLoginResponse(token));
 
     }
